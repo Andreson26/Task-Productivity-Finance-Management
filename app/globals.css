@@ -110,3 +110,23 @@ main {
   font-weight: 600;
 }
 
+/* 🌙 THEME TOGGLE */
+.theme-toggle-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--accent);
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-block: 4rem;
+}
+
