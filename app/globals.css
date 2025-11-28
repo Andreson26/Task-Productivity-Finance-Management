@@ -1,4 +1,112 @@
+@import "@fontsource/plus-jakarta-sans";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 🌞 Light Theme */
+/* 🌞 Light Theme */
+:root {
+  --foreground: #1b1f34;
+  --background: #f7f9fc;
+  --nav-background: rgba(255, 255, 255, 0.8);
+  --background-gradient: linear-gradient(
+    135deg,
+    #eef2f7 0%,
+    #f7f9fc 40%,
+    #ffffff 100%
+  );
+  --card: #ffffff;
+  --accent: #2563eb; /* Deep SaaS blue */
+  --accent-hover: #1d4ed8;
+  --muted: #8b94a7;
+  --border: #e5e7eb;
+}
+
+/* 🌚 Dark Theme */
+[data-theme="dark"] {
+  --foreground: #e3e8f3;
+  --background: #0b1220;
+  --nav-background: rgba(11, 18, 32, 0.7);
+  --background-gradient: linear-gradient(
+    135deg,
+    #0b1220,
+    #0f1d37 40%,
+    #13294b 100%
+  );
+  --card: #111a2b;
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --muted: #a1acc4;
+  --border: #1e2635;
+}
+
+/* ✨ Base */
+body {
+  background: var(--background-gradient);
+  color: var(--foreground);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Prevent avatar dropdown from overlapping hero */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* 🔗 NAVBAR */
+.nav-bg {
+  background-color: var(--background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  isolation: isolate;
+  z-index: 50;
+}
+
+.nav-transition {
+  background-color: var(--nav-background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--foreground);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--foreground);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--foreground) !important;
+  font-weight: 600;
+}
 
