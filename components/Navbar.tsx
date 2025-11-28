@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -66,6 +67,7 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
+           <ThemeToggle />
         </div>
 
         {/* Mobile toggle */}
