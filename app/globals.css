@@ -256,14 +256,14 @@ main {
 
 /* 🔥 Global Page Spacing System */
 .global-wrapper {
-  max-width: 80rem;
+  max-width: 90rem;
   margin-inline: auto;
   padding-inline: 1rem;
   padding-top: 6rem; /* space for navbar */
   padding-bottom: 4rem;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .global-wrapper {
     padding-inline: 2rem;
     padding-top: 7rem;
@@ -278,3 +278,51 @@ main {
     padding-bottom: 6rem;
   }
 }
+
+.pricing-section {
+  padding-block: 4rem;
+}
+
+@media (min-width: 768px) {
+  .pricing-section {
+    padding-block: 6rem;
+  }
+}
+
+.pricing-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-height: 400px; /* uniform card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Footer improvements */
+.footer-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: 0.925rem;
+  transition: color 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+
