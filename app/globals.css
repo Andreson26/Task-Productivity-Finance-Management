@@ -130,3 +130,68 @@ main {
   padding-block: 4rem;
 }
 
+@media (min-width: 768px) {
+  .hero-section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 6rem;
+  }
+}
+
+.hero-text h1 {
+  line-height: 1.1;
+}
+
+.hero-image {
+  max-width: 620px;
+  width: 100%;
+  height: auto;
+}
+
+/* 🎨 BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--accent);
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* 🟦 OUTLINE BUTTON */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--accent);
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline:hover {
+  color: #fff;
+  background: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
