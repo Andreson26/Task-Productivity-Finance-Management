@@ -63,11 +63,21 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} className={activeClass(item.href)}>
+            <Link
+              key={item.name}
+              href={item.href}
+              className={activeClass(item.href)}
+            >
               {item.name}
             </Link>
           ))}
-           <ThemeToggle />
+          <ThemeToggle />
+          <Link href="/auth/signup" className="btn">
+            Sign Up
+          </Link>
+          <Link href="/auth/signin" className="btn-outline">
+            Sign In
+          </Link>
         </div>
 
         {/* Mobile toggle */}
