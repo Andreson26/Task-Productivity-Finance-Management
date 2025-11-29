@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "@fontsource/plus-jakarta-sans";
 
 import { Providers } from "./providers";
+import ClientLayout from "@/components/Clientlayout";
 
 export const metadata: Metadata = {
   title: "Task Productivity & Finance Management",
@@ -41,7 +42,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <ClientLayout>{children}</ClientLayout>
+        </Providers>
       </body>
     </html>
   );

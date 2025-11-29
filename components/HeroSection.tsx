@@ -50,7 +50,7 @@ export default function HeroSection() {
           src="/dashboard-preview.png"
           alt="Dashboard Preview"
           width={600}
-          height={400}
+          height={600}
           priority
           className="rounded-xl shadow-xl hero-image"
         />
