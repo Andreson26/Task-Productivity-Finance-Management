@@ -94,17 +94,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-          {isAdmin &&
-            adminNav.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="nav-link text-red-600"
-              >
-                {item.name}
-              </Link>
-            ))}
-
+        
           {!isLoggedIn ? (
             <>
               <Link href="/auth/signup" className="btn">

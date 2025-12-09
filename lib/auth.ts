@@ -1,34 +1,28 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { Role } from "@prisma/client";
 
 import prisma from "@/lib/prisma";
 import { verifyPassword } from "@/lib/security";
-import { Role } from "@prisma/client";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
 
   session: {
     strategy: "jwt",
-  }, 
+  },
 
   providers: [
-    /**
-     * 🧩 Credentials Provider
-     * Basic login: Email + Password
-     * No lockout, no captcha (those will come in future branches)
-     */
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
-             throw new Error("MissingCredentials");
+          throw new Error("MissingCredentials");
         }
 
         const email = credentials.email.toLowerCase().trim();
@@ -57,24 +51,31 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    /**
-     * 🔐 JWT Callback
-     * Add id, role, name to token
-     */
     async jwt({ token, user }) {
+      // 1) On initial sign-in, copy data from user
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.name = user.name ?? null;
         token.role = (user.role as Role) ?? Role.USER;
+        return token;
       }
+
+      // 2) On subsequent requests, always sync role from DB
+      if (token.id) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { role: true },
+        });
+
+        if (dbUser) {
+          token.role = dbUser.role;
+        }
+      }
+
       return token;
     },
 
-    /**
-     * 🔐 Session Callback
-     * Add id, role, name to session.user
-     */
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
