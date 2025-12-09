@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import { useSession } from "next-auth/react";
 
 export default function HeroSection() {
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
 
   return (
     <section className="hero-section">
@@ -16,19 +18,19 @@ export default function HeroSection() {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-          Master Your{" "}
-          <span className="text-accent">Time</span> &{" "}
+          Master Your <span className="text-accent">Time</span> &{" "}
           <span className="text-accent">Finances</span> with Ease
         </h1>
 
         <p className="text-lg text-foreground max-w-lg leading-relaxed">
-          A unified productivity and finance management platform designed to help you
-          stay organized, automate tasks, and track financial health — powered by AI.
+          A unified productivity and finance management platform designed to
+          help you stay organized, automate tasks, and track financial health —
+          powered by AI.
         </p>
 
         <div className="hero-buttons flex gap-4 mt-4">
-        
-           
+          {!isLoggedIn ? (
+            <>
               <Link href="/auth/signup" className="btn">
                 Get Started Free
               </Link>
@@ -36,7 +38,12 @@ export default function HeroSection() {
               <Link href="/learn-more" className="btn-outline">
                 Learn More
               </Link>
-        
+            </>
+          ) : (
+            <Link href="/dashboard" className="btn">
+              Go to Dashboard
+            </Link>
+          )}
         </div>
       </motion.div>
 
@@ -50,7 +57,7 @@ export default function HeroSection() {
           src="/dashboard-preview.png"
           alt="Dashboard Preview"
           width={600}
-          height={600}
+          height={400}
           priority
           className="rounded-xl shadow-xl hero-image"
         />
