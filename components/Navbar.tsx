@@ -26,7 +26,7 @@ export default function Navbar() {
     document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
 
-  const navItems = [
+  const publicNav = [
     { name: "Home", href: "/" },
     { name: "Pricing", href: "/pricing" },
   ];
@@ -62,7 +62,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+          {publicNav.map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -81,12 +81,15 @@ export default function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="md:hidden p-2 rounded-md hover:bg-card transition"
-        >
-          <Menu size={26} />
-        </button>
+         <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2 rounded-md hover:bg-card transition"
+          >
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -116,7 +119,7 @@ export default function Navbar() {
 
         {/* Mobile nav links */}
         <nav className="min-h-full nav-bg flex flex-col items-center p-10 space-y-8">
-          {navItems.map((item) => (
+          {publicNav.map((item) => (
             <Link
               key={item.name}
               href={item.href}

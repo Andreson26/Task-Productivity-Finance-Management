@@ -1,4 +1,3 @@
-// prisma.config.ts
 import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
@@ -8,9 +7,10 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: env("DATABASE_URL"),
-    
+    // you can use DATABASE_URL or a DIRECT_URL here
+    url: env("DIRECT_URL") ?? env("DATABASE_URL"),
   },
 });
 
-
+        
+        
