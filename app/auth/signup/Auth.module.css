@@ -141,6 +141,7 @@
   border-radius: 0.5rem;
   outline: none;
   transition: all 0.3s ease;
+  color: #9ca3af;
 }
 .input:focus {
   border-color: #3b82f6;
@@ -148,7 +149,7 @@
 }
 .input::placeholder {
   color: #9ca3af;
-  opacity: 1;
+ 
 }
 .errorInput {
   border-color: #dc2626;
